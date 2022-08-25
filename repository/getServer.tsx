@@ -15,13 +15,14 @@ export const fetchUrlForGet = ( url : string) => new Promise<void>(async (resolv
 	})
 		.then((response) => response.json())
 		.then((responseData) => {
+			console.log(responseData)
 			if(responseData.hasOwnProperty('response')){
 				// console.log(responseData)
                 
 				newsData.newsData = responseData;
 				resolve(newsData.newsData);
 			}else {
-				console.log(TAG, 'fetchUrlForGet', responseData);
+				// console.log(TAG, 'fetchUrlForGet', responseData);
 				resolve(responseData.fault)
 			}
 		})

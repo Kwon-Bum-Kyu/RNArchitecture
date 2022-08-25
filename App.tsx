@@ -19,7 +19,7 @@ export default function App() {
         let data = await fetchUrlForGet(url + `?q=china&api-key=${key}&page=${0}`)
         return data
       };
-      getPosts().then((data) => {
+      getPosts().then((data : any) => {
         setData(data)
         setLoading(true)
       })

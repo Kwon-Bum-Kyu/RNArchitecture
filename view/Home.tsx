@@ -11,8 +11,8 @@ import HomeViewModel from '../controller/Home/HomeViewModel';
 
 export type Props = {
   viewModel: HomeViewModel;
-};
-const _renderItem = (index, item) => { // 리스트로 뿌려주기 위한 데이터 형식
+}
+const _renderItem = (index : Number, item : HomeViewModel) => { // 리스트로 뿌려주기 위한 데이터 형식
   let title = item.hasOwnProperty('headline') ? item.headline.main : ''
   // console.log(item.web_url);
   return (
@@ -29,7 +29,7 @@ const _renderItem = (index, item) => { // 리스트로 뿌려주기 위한 데�
     >
       <View>
         <Text numberOfLines={1} style={{ fontSize: 12 }}>{'제목 : ' + item.headline.main}</Text>
-        <Text style={{ marginTop: 5 }}>{'게시일 : ' + item.pub_date}</Text>
+        <Text style={{ marginTop: 5 }}>{`게시일 : ${item.pub_date}`}</Text>
       </View>
       
     </TouchableOpacity>
@@ -40,7 +40,7 @@ const Home: React.FC<PropsWithChildren<Props>> = ({
   viewModel
 }) => {
   let todos = viewModel.getlist();
-  console.log(todos);
+  // console.log(todos);
   
   return (
     <FlatList
