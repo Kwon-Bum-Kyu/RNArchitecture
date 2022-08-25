@@ -1,7 +1,7 @@
-export const initialState={
-    status: String,
-    copyright: String,
-    response: Response,
+export interface initialState{
+    status: String | null;
+    copyright: String | null;
+    response: Response | null;
 }
 
 interface Response {
@@ -68,24 +68,33 @@ interface Multimedia {
     major: string;
 }
 
+
+
 export const REQUEST_SET_NEWSDATA= "REQUEST_SET_NEWSDATA";
 
-export const requestSetStore=(data : any)=>({
+export interface request_Set_NewsData {
+    type: typeof REQUEST_SET_NEWSDATA;
+    response: initialState | null;
+}
+export const initialState: initialState = {
+    status: null,
+    copyright: null,
+    response: null,
+}
+export const requestSetNewsData=(data : initialState) : request_Set_NewsData =>({
     type: REQUEST_SET_NEWSDATA,
-    data: data
+    response: data
 });
 
-const marketStore=(state=initialState, action: { type: String; data: any; })=>{
+const marketStore=(state=initialState, action) : initialState => {
     switch(action.type){
         case "REQUEST_SET_NEWSDATA":
             return {
                 ...state,
-                ...action.data,
+                ...action.response,
             }
-            break;
         default:
             return state;
-            break;
     }
 }
 export default marketStore;

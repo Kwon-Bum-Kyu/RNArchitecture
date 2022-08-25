@@ -1,10 +1,5 @@
 
 const TAG = 'getServer'
-import { NewsData } from "../model/newsData"; 
-
-
-const newsData = new NewsData
-
 export const fetchUrlForGet = ( url : string) => new Promise<void>(async (resolve, reject) => {
 	console.log(TAG, 'fetchUrlForGet', url);
 	fetch(url, {
@@ -15,12 +10,9 @@ export const fetchUrlForGet = ( url : string) => new Promise<void>(async (resolv
 	})
 		.then((response) => response.json())
 		.then((responseData) => {
-			console.log(responseData)
-			if(responseData.hasOwnProperty('response')){
-				// console.log(responseData)
-                
-				newsData.newsData = responseData;
-				resolve(newsData.newsData);
+			if(responseData.hasOwnProperty('response')){ 
+				
+				resolve(responseData);
 			}else {
 				// console.log(TAG, 'fetchUrlForGet', responseData);
 				resolve(responseData.fault)

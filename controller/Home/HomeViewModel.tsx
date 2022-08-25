@@ -1,17 +1,27 @@
 
+import { useDispatch } from 'react-redux';
 import { NewsData } from '../../model/newsData';
+import { requestSetNewsData } from '../../store/reducers/newsData';
+import store from '../../store/store';
+
 
 class HomeViewModel {
     model: NewsData;
     headline: any;
     pub_date: any;
+    
     constructor(model: NewsData) {
         this.model = model
     }
     getlist() {
-        // console.log('getlist', this.model.generateDocs());
+        const dispatch = useDispatch();
 
-        return this.model.generateDocs()
+        dispatch(requestSetNewsData(this.model.generateDocs()));
+        
+
+        // console.log(store.getState().newsData);
+        
+        return store.getState().newsData;
     }
 
 }
