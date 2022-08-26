@@ -37,20 +37,22 @@ const _renderItem = (index : Number, item : {headline : {main : String}, pub_dat
 const Home: React.FunctionComponent<Props> = ({
   listItem,
 }) => {
+  console.log(listItem);
+  
   return (
-    <View></View>
-    // <FlatList
-    //   style={{ flex: 1 }}
-    //   // contentContainerStyle={{ paddingBottom: 30 }}
-    //   data={listItem}
-    //   keyExtractor={(item, index) => index.toString()}
-    //   renderItem={({ index, item }) => _renderItem(index, item)}
-    //   // onEndReached={this._handleLoadMore}
-    //   onEndReachedThreshold={1}
-    //   ListEmptyComponent={() => <View>
-    //     <Text>검색 결과가 없습니다.</Text>
-    //   </View>} 
-    //   />
+    // <View></View>
+    <FlatList
+      style={{ flex: 1 }}
+      // contentContainerStyle={{ paddingBottom: 30 }}
+      data={listItem}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ index, item }) => _renderItem(index, item)}
+      // onEndReached={this._handleLoadMore}
+      onEndReachedThreshold={1}
+      ListEmptyComponent={() => <View>
+        <Text>검색 결과가 없습니다.</Text>
+      </View>} 
+      />
   );
 }
 

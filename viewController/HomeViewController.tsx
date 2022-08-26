@@ -14,8 +14,7 @@ export type Props = {
 const HomeViewController: React.FC<PropsWithChildren<Props>> = ({
     viewModel
 }) => {
-
-
+    
 
     return (
         <Home

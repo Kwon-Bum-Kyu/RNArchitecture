@@ -1,11 +1,19 @@
 
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NewsData } from '../../model/newsData';
 import { requestSetNewsData } from '../../store/reducers/newsData';
 import store from '../../store/store';
 
 
-class HomeViewModel {
+type Props = {
+    model : NewsData;
+    headline : any;
+    pub_date: any;
+  }
+
+
+class HomeViewModel implements Props{
     model: NewsData;
     headline: any;
     pub_date: any;
@@ -14,14 +22,7 @@ class HomeViewModel {
         this.model = model
     }
     getlist() {
-        const dispatch = useDispatch();
-
-        dispatch(requestSetNewsData(this.model.generateDocs()));
-        
-
-        // console.log(store.getState().newsData);
-        
-        return store.getState().newsData;
+        return this.model.generateDocs()
     }
 
 }

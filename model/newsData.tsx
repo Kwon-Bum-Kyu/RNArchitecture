@@ -116,7 +116,8 @@
         }
         
         generateDocs() {
-            return this.newsData
+            
+            return this.newsData.response.docs
         }
         /**
         * @param {Doc} docs     abstract: string;
