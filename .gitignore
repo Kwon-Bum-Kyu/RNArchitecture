@@ -37,6 +37,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+#protect data
+util/key.tsx
+
 # BUCK
 buck-out/
 \.buckd/

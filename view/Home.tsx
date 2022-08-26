@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import HomeViewModel from '../controller/Home/HomeViewModel';
 
-export type Props = {
-  viewModel: HomeViewModel;
-};
-const _renderItem = (index, item) => { // 리스트로 뿌려주기 위한 데이터 형식
-  let title = item.hasOwnProperty('headline') ? item.headline.main : ''
+type Props = {
+  listItem : HomeViewModel;
+}
+const _renderItem = (index : Number, item : {headline : {main : String}, pub_date : String}) => { // 리스트로 뿌려주기 위한 데이터 형식
   // console.log(item.web_url);
   return (
     <TouchableOpacity style={{
@@ -29,34 +28,32 @@ const _renderItem = (index, item) => { // 리스트로 뿌려주기 위한 데�
     >
       <View>
         <Text numberOfLines={1} style={{ fontSize: 12 }}>{'제목 : ' + item.headline.main}</Text>
-        <Text style={{ marginTop: 5 }}>{'게시일 : ' + item.pub_date}</Text>
+        <Text style={{ marginTop: 5 }}>{`게시일 : ${item.pub_date}`}</Text>
       </View>
       
     </TouchableOpacity>
   )
-
 };
-const Home: React.FC<PropsWithChildren<Props>> = ({
-  viewModel
+const Home: React.FunctionComponent<Props> = ({
+  listItem,
 }) => {
-  let todos = viewModel.getlist();
-  console.log(todos);
+  console.log(listItem);
   
   return (
+    // <View></View>
     <FlatList
-    		style={{ flex: 1 }}
-    		// contentContainerStyle={{ paddingBottom: 30 }}
-    		data={todos}
-    		keyExtractor={(item, index) => index.toString()}
-    		renderItem={({ index, item }) => _renderItem(index, item)}
-    		// onEndReached={this._handleLoadMore}
-    		onEndReachedThreshold={1}
-    		ListEmptyComponent={() =>
-    			<View>
-    				<Text>검색 결과가 없습니다.</Text>
-    			</View>}
-    	/>
-  )
+      style={{ flex: 1 }}
+      // contentContainerStyle={{ paddingBottom: 30 }}
+      data={listItem}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ index, item }) => _renderItem(index, item)}
+      // onEndReached={this._handleLoadMore}
+      onEndReachedThreshold={1}
+      ListEmptyComponent={() => <View>
+        <Text>검색 결과가 없습니다.</Text>
+      </View>} 
+      />
+  );
 }
 
   
